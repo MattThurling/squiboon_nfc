@@ -1,0 +1,1 @@
+export const nfc = ("NDEFReader" in window) ? new window.NDEFReader() : null;
