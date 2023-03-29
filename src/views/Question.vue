@@ -61,7 +61,6 @@
       profile_id: profile.value.id,
       value: v,
     })
-    alert(response)
     phase.value++
   }
 
