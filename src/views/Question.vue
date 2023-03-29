@@ -10,7 +10,7 @@
       </p>
     </div>
     <div v-if="phase==2" class="mt-8">
-      <p class="text-2xl text-center mb-12">Thanks for taking the time to give your opinion, {{ profile.name }}</p>
+      <p class="text-2xl text-center mb-12">What do you think, {{ profile.name }}...</p>
       <button @click="vote(true)" class="btn btn-lg btn-outline btn-primary mx-4">
         Yes
       </button>
@@ -20,6 +20,9 @@
     </div>
     <div v-if="phase==3" class="mt-8">
       <p class="text-2xl text-center mb-12">POLL RESULTS</p>
+    </div>
+    <div class="diagnostics">
+      <p>{{ phase }} | {{ sId }} | {{ profile.name }}</p>
     </div>
   </div>
 </template>
@@ -51,7 +54,7 @@
 
   const vote = async (v: boolean) => {
     alert('Voting')
-    let response = await axios.post(`http://127.0.0.1:8000/api/questions/${route.params.id}/answers/`, {
+    let response = await axios.post(`https://squiboon.nw.r.appspot.com/api/questions/${route.params.id}/answers/`, {
       profile_id: profile.value.id,
       value: v,
     })

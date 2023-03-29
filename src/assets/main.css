@@ -3,3 +3,8 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.diagnostics{
+  position: absolute;
+  bottom: 10px;
+}
