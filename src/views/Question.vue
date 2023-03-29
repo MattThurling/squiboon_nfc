@@ -56,7 +56,6 @@
   }
 
   const vote = async (v: boolean) => {
-    alert('Voting')
     let response = await axios.post(`https://squiboon.nw.r.appspot.com/api/questions/${route.params.id}/answers/`, {
       profile_id: profile.value.id,
       value: v,
