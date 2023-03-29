@@ -10,6 +10,7 @@
       <p class="text-2xl text-center mb-12">
         {{ sId }}
       </p>
+      <button class="btn btn-lg btn-primary mx-4" @click="scan">Scan</button>
     </div>
     <div class="mt-8">
       
