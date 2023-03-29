@@ -9,14 +9,17 @@
         Please tap your Squiboon card...
       </p>
     </div>
-    <div v-if="phase==2" class="mt-8">
+    <div v-if="phase==2">
       <p class="text-2xl text-center mb-12">What do you think, {{ profile.name }}...</p>
-      <button @click="vote(true)" class="btn btn-lg btn-outline btn-primary mx-4">
-        Yes
-      </button>
-      <button @click="vote(false)" class="btn btn-lg btn-outline btn-primary mx-4">
-        No
-      </button>
+      <div class="text-center">
+        <button @click="vote(true)" class="btn btn-lg btn-outline btn-primary mx-4">
+          Yes
+        </button>
+        <button @click="vote(false)" class="btn btn-lg btn-outline btn-primary mx-4">
+          No
+        </button>
+      </div>
+      
     </div>
     <div v-if="phase==3" class="mt-8">
       <p class="text-2xl text-center mb-12">POLL RESULTS</p>
