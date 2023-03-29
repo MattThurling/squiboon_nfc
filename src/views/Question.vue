@@ -14,10 +14,11 @@
       </p>
     </div>
     <div v-if="phase == 2" class="mt-8">
-      <button class="btn btn-lg btn-outline btn-primary mx-4" @click="">
+      <p>Thanks for taking the time to give your opinion, {{ profile.name }}</p>
+      <button @click="vote(true)" class="btn btn-lg btn-outline btn-primary mx-4">
         Yes
       </button>
-      <button class="btn btn-lg btn-outline btn-primary mx-4" @click="">
+      <button @click="vote(false)" class="btn btn-lg btn-outline btn-primary mx-4">
         No
       </button>
     </div>
@@ -47,6 +48,14 @@
     console.log(u)
     let response = await axios.get(`https://squiboon.nw.r.appspot.com/api/profiles/nfc/${u}`)
     profile.value = response.data
+  }
+
+  const vote = async (v: boolean) => {
+    let response = await axios.post(`https://squiboon.nw.r.appspot.com/api/questions/${route.params.id}/answers`, {
+      profile_id: profile.value.id,
+      value: v,
+    })
+    phase.value++
   }
 
   const scan = async () => {
