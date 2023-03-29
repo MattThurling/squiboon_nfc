@@ -1,26 +1,25 @@
 <template>
   <div class="h-screen flex flex-col justify-center items-center py-12 px-4">
     <p class="text-4xl text-center mb-12">
-      {{ question.body }}<br>{{ phase }}<br>{{ profile }}
+      {{ question.body }}
     </p>
-    <button v-if="phase ==0" class="btn btn-lg btn-outline btn-primary mx-4" @click="scan">Vote Now</button>
-    <button v-if="phase ==0" class="btn btn-lg btn-outline btn-primary mx-4" @click="getProfile">Get Profile</button>
-    <div v-if="phase == 1">
+    <button v-if="phase==0" class="btn btn-lg btn-outline btn-primary mx-4" @click="scan">Vote Now</button>
+    <div v-if="phase==1">
       <p class="text-2xl text-center mb-12">
-        {{ info }}
-      </p>
-      <p class="text-2xl text-center mb-12">
-        {{ sId }}
+        Please tap your Squiboon card...
       </p>
     </div>
-    <div v-if="phase == 2" class="mt-8">
-      <p>Thanks for taking the time to give your opinion, {{ profile.name }}</p>
+    <div v-if="phase==2" class="mt-8">
+      <p class="text-2xl text-center mb-12">Thanks for taking the time to give your opinion, {{ profile.name }}</p>
       <button @click="vote(true)" class="btn btn-lg btn-outline btn-primary mx-4">
         Yes
       </button>
       <button @click="vote(false)" class="btn btn-lg btn-outline btn-primary mx-4">
         No
       </button>
+    </div>
+    <div v-if="phase==3" class="mt-8">
+      <p class="text-2xl text-center mb-12">POLL RESULTS</p>
     </div>
   </div>
 </template>
@@ -52,7 +51,7 @@
 
   const vote = async (v: boolean) => {
     alert('Voting')
-    let response = await axios.post(`https://squiboon.nw.r.appspot.com/api/questions/${route.params.id}/answers`, {
+    let response = await axios.post(`http://127.0.0.1:8000/api/questions/${route.params.id}/answers/`, {
       profile_id: profile.value.id,
       value: v,
     })
