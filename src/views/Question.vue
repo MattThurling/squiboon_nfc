@@ -63,12 +63,11 @@
           sId.value = e.serialNumber
           console.log(`> Serial Number: ${e.serialNumber}`)
           console.log(`> Records: (${e.message.records.length})`)
+          getProfile()
           phase.value++
         },
       }
-      if (sId.value != '---') {
-        getProfile()
-      }
+
 
       nfc.addEventListener('reading', listenerObject)
       nfc.addEventListener('readingerror', () => {
