@@ -23,7 +23,7 @@
     </div>
     <div v-if="phase==3">
       <Dough :votes=latestVotes />
-      <p class="mt-6">Number of votes so far: {{ voteCount }}</p>
+      <p class="mt-6 text-center">Number of votes so far: {{ voteCount }}</p>
     </div>
 
     <div class="diagnostics">
@@ -45,7 +45,7 @@
   const route = useRoute()
   const sId = ref('---')
   const info = ref('Press the button to scan your NFC tag.')
-  const phase = ref(0)
+  const phase = ref(3)
   const latestVotes = ref([0,0])
   const voteCount = ref(0)
 
