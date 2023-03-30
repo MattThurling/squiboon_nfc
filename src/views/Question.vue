@@ -21,45 +21,60 @@
       </div>
       
     </div>
-    <div v-if="phase==3" class="mt-8">
-      <p class="text-2xl text-center mb-12">POLL RESULTS</p>
+    <div v-if="phase==3" class="mb-6">
+      <Dough :votes=latestVotes />
     </div>
+    <p>Number of votes so far: {{ voteCount }}</p>
     <div class="diagnostics">
       <p>{{ phase }} | {{ sId }} | {{ profile.name }}</p>
     </div>
+    
   </div>
 </template>
 
 <script setup lang="ts">
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref, computed } from 'vue'
   import { useRoute } from 'vue-router'
   import axios from 'axios'
   import { nfc } from '../nfc'
-
+  import Dough from '../components/Dough.vue'
+  
   const question = ref({id: null, body: null})
   const profile = ref({id: null, name: null, nfc: null})
   const route = useRoute()
   const sId = ref('---')
   const info = ref('Press the button to scan your NFC tag.')
   const phase = ref(0)
+  const latestVotes = ref([0,0])
+  const voteCount = ref(0)
 
   onMounted(async() => {
-    let response = await axios.get(`https://squiboon.nw.r.appspot.com/api/questions/${route.params.id}`)
+    let response = await axios.get(`${import.meta.env.VITE_SQUIBOON_API}/questions/${route.params.id}`)
     question.value = response.data
   })
 
   const getProfile = async () => {
     let u = encodeURIComponent(sId.value)
     console.log(u)
-    let response = await axios.get(`https://squiboon.nw.r.appspot.com/api/profiles/nfc/${u}`)
+    let response = await axios.get(`${import.meta.env.VITE_SQUIBOON_API}/profiles/nfc/${u}`)
     profile.value = response.data
   }
 
+  const getVotes = async () => {
+    let response = await axios.get(`${import.meta.env.VITE_SQUIBOON_API}/questions/${route.params.id}/answers`)
+    console.log(response.data)
+    let yes = response.data.filter((a: any) => a.value == true).length
+    let no = response.data.filter((a: any) => a.value == false).length
+    voteCount.value = yes + no
+    latestVotes.value = [yes, no]
+  }
+
   const vote = async (v: boolean) => {
-    let response = await axios.post(`https://squiboon.nw.r.appspot.com/api/questions/${route.params.id}/answers/`, {
+    let response = await axios.post(`${import.meta.env.VITE_SQUIBOON_API}/questions/${route.params.id}/answers/`, {
       profile_id: profile.value.id,
       value: v,
     })
+    getVotes()
     phase.value++
   }
 
