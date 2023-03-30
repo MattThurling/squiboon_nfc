@@ -45,7 +45,7 @@
   const route = useRoute()
   const sId = ref('---')
   const info = ref('Press the button to scan your NFC tag.')
-  const phase = ref(3)
+  const phase = ref(0)
   const latestVotes = ref([0,0])
   const voteCount = ref(0)
 
