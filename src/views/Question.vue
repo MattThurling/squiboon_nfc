@@ -21,10 +21,11 @@
       </div>
       
     </div>
-    <div v-if="phase==3" class="mb-6">
+    <div v-if="phase==3">
       <Dough :votes=latestVotes />
+      <p class="mt-6">Number of votes so far: {{ voteCount }}</p>
     </div>
-    <p>Number of votes so far: {{ voteCount }}</p>
+
     <div class="diagnostics">
       <p>{{ phase }} | {{ sId }} | {{ profile.name }}</p>
     </div>
