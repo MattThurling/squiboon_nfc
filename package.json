@@ -16,6 +16,7 @@
     "daisyui": "^2.51.5",
     "vue": "^3.2.47",
     "vue-chart-3": "^3.1.8",
+    "vue-fullscreen": "^3.1.1",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

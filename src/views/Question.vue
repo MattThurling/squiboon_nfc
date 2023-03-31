@@ -27,7 +27,7 @@
     </div>
 
     <div class="diagnostics">
-      <p>{{ phase }} | {{ sId }} | {{ profile.name }}</p>
+      <p>{{ phase }} | {{ sId }} | {{ profile.name }} | <button v-fullscreen>fs</button></p>
     </div>
     
   </div>

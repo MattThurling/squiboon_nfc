@@ -6,6 +6,7 @@
     <div v-for="question in questions">
       <a :href="`/questions/${question.id}`">{{ question.body }}</a>
     </div>
+    <hr class="my-8">
   </div>
 </template>
 
@@ -16,7 +17,7 @@
   const questions = ref([{id: null, body: null}])
 
   onMounted(async() => {
-    let response = await axios.get('https://squiboon.nw.r.appspot.com/api/questions')
+    let response = await axios.get(`${import.meta.env.VITE_SQUIBOON_API}/questions`)
     questions.value = response.data
   })
 
