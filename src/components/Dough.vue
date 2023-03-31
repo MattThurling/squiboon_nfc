@@ -36,6 +36,11 @@
     ],
   }))
 
+  const options = 
+    {
+      responsive: true,
+      maintainAspectRatio: false,
+    }
 
     
 </script>
