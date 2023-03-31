@@ -1,16 +1,16 @@
 <template>
   <div class="h-screen flex flex-col justify-center items-center py-12 px-4">
-    <p class="text-4xl text-center mb-12">
+    <p class="text-4xl text-white text-center mb-12">
       {{ question.body }}
     </p>
     <button v-if="phase==0" class="btn btn-lg btn-outline btn-primary mx-4" @click="scan">Vote Now</button>
     <div v-if="phase==1">
-      <p class="text-2xl text-center mb-12">
+      <p class="text-2xl text-white text-center mb-12">
         Please tap your Squiboon card...
       </p>
     </div>
     <div v-if="phase==2">
-      <p class="text-2xl text-center mb-12">What do you think, {{ profile.name }}...</p>
+      <p class="text-2xl text-white text-center mb-12">What do you think, {{ profile.name }}...</p>
       <div class="text-center">
         <button @click="vote(true)" class="btn btn-lg btn-outline btn-primary mx-4">
           Yes
@@ -23,11 +23,11 @@
     </div>
     <div v-if="phase==3">
       <Dough :votes=latestVotes />
-      <p class="mt-6 text-center">Number of votes so far: {{ voteCount }}</p>
+      <p class="mt-6 text-white text-center">Number of votes so far: {{ voteCount }}</p>
     </div>
 
     <div class="diagnostics">
-      <p>{{ phase }} | {{ sId }} | {{ profile.name }} | <button v-fullscreen>fs</button></p>
+      <p><button @click="phase++">{{ phase }}</button> | {{ sId }} | {{ profile.name }} | <button v-fullscreen>fs</button></p>
     </div>
     
   </div>
